@@ -11,11 +11,8 @@ class Home extends Component {
 
   render(){
     return (
-      <div>Home page
-        <img src="/assets/img/download.jpeg"/>
-        {env.debug && <span>is debug mode {env.debug}</span>}
-        <button onClick={this.props.exampleFunction}>Action button</button>
-        <div>{this.props.example.value}</div>
+      <div>
+        <h1>Craigslist Housing</h1>
       </div>
     )
   }
