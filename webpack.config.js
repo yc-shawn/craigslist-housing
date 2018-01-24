@@ -16,7 +16,8 @@ module.exports = {
       include: path.resolve(__dirname, 'src'),
       loader: 'babel-loader',
       query: {
-        presets: ['react', 'es2015']
+        presets: ['react', 'es2015'],
+        plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
       }
     }, {
       test: /\.sass$/,

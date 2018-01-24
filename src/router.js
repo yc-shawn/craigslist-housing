@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 
-import Home from './components/home';
+import Container from './components/container';
 import About from './components/about';
 
 export default class RouterComponent extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-        </div>
-      </Router>
+      <Container>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={About} />
+            <Route path="/about" component={About} />
+          </Switch>
+        </Router>
+      </Container>
+
     )
   }
 }
