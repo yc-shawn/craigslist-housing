@@ -1,0 +1,49 @@
+{
+    "area": "",
+    "ban": {
+        "name": "housing",
+        "link": "/d/housing/search/hhh"
+    },
+    "cats": [
+        {
+            "name": "apts / housing",
+            "link": "/d/apts-housing-for-rent/search/apa"
+        },
+        {
+            "name": "housing swap",
+            "link": "/d/housing-swap/search/swp"
+        },
+        {
+            "name": "housing wanted",
+            "link": "/d/all-housing-wanted/search/hsw"
+        },
+        {
+            "name": "office / commercial",
+            "link": "/d/office-commercial/search/off"
+        },
+        {
+            "name": "parking / storage",
+            "link": "/d/parking-storage/search/prk"
+        },
+        {
+            "name": "real estate for sale",
+            "link": "/d/real-estate/search/rea"
+        },
+        {
+            "name": "rooms / shared",
+            "link": "/d/rooms-shares/search/roo"
+        },
+        {
+            "name": "rooms wanted",
+            "link": "/d/room-share-wanted/search/sha"
+        },
+        {
+            "name": "sublets / temporary",
+            "link": "/d/sublets-temporary/search/sub"
+        },
+        {
+            "name": "vacation rentals",
+            "link": "/d/vacation-rentals/search/vac"
+        }
+    ]
+}

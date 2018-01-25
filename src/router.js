@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Container from './components/container';
 import Home from './components/home';
-import About from './components/about';
+import List from './components/list';
 
 export default class RouterComponent extends Component {
 
@@ -13,7 +13,7 @@ export default class RouterComponent extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
+            <Route path="/list" component={List} />
           </Switch>
         </Router>
       </Container>

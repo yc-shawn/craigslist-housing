@@ -1,24 +1,34 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import axios from 'axios';
 
-export default class Home extends Component {
-  constructor(){
-    super();
-    this.state = { housing: {"area":"","ban":{"name":"housing","link":"/d/housing/search/hhh"},"cats":[{"name":"apts / housing","link":"/d/apts-housing-for-rent/search/apa"},{"name":"housing swap","link":"/d/housing-swap/search/swp"},{"name":"housing wanted","link":"/d/all-housing-wanted/search/hsw"},{"name":"office / commercial","link":"/d/office-commercial/search/off"},{"name":"parking / storage","link":"/d/parking-storage/search/prk"},{"name":"real estate for sale","link":"/d/real-estate/search/rea"},{"name":"rooms / shared","link":"/d/rooms-shares/search/roo"},{"name":"rooms wanted","link":"/d/room-share-wanted/search/sha"},{"name":"sublets / temporary","link":"/d/sublets-temporary/search/sub"},{"name":"vacation rentals","link":"/d/vacation-rentals/search/vac"}]} };
+// Actions
+import { getList } from '../actions/list.action';
+
+class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = { housing: {} };
   }
-  // componentWillMount(){
-  //   axios.get(`${env.api}housing/`).then(res => {
-  //     this.setState({ housing: res.data });
-  //   })
-  // }
+  componentWillMount(){
+    axios.get(env.debug ? '/data/housing.json': `${env.api}housing/`).then(res => {
+      this.setState({ housing: res.data });
+    })
+  }
+  goList(link){
+    console.log("this.props:", this.props);
+    // this.props.getList(link);
+    this.props.history.push('list');
+  }
 
   render(){
     let { ban, cats } = this.state.housing;
-    console.log(this.state.housing);
     let CatItem = (props) => {
       return (
         <div class={'housing-cat-item ' + props.classNmae}>
-          <a href={props.item.link}>{props.all && 'all the '} {props.item.name}</a>
+          <span onClick={()=>this.goList(props.item.link)}>
+            {props.all && 'all the '} {props.item.name}
+          </span>
         </div>
       )
     }
@@ -37,3 +47,10 @@ export default class Home extends Component {
     )
   }
 }
+
+function mapStateToProps(state){
+  return { list: state.list }
+}
+
+
+export default connect(null, {getList})(Home);
