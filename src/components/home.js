@@ -17,7 +17,7 @@ class Home extends Component {
   }
   goList(link){
     console.log("this.props:", this.props);
-    // this.props.getList(link);
+    this.props.getList(link);
     this.props.history.push('list');
   }
 

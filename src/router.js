@@ -9,15 +9,14 @@ export default class RouterComponent extends Component {
 
   render() {
     return (
-      <Container>
-        <Router>
-          <Switch>
+      <Router>
+        <Switch>
+          <Container>
             <Route exact path="/" component={Home} />
             <Route path="/list" component={List} />
-          </Switch>
-        </Router>
-      </Container>
-
+          </Container>
+        </Switch>
+      </Router>
     )
   }
 }
