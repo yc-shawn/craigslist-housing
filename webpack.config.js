@@ -39,7 +39,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "env": {
-        "debug": JSON.parse(process.env.DEBUG)
+        "debug": JSON.parse(process.env.DEBUG),
+        "api": JSON.stringify(process.env.API)
       }
     })
   ]
