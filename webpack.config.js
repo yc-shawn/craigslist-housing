@@ -2,12 +2,14 @@ require('dotenv').config();
 var path = require('path');
 var webpack = require('webpack');
 
+var ASSET_PATH = 'public/assets/'
+
 module.exports = {
   entry: path.resolve(__dirname, 'src') + '/index.js',
   output: {
     path: path.resolve(__dirname, 'public/js'),
     filename: 'app.js',
-    publicPath: '/js/'
+    publicPath: 'public/js/'
     // public path is where you put in to the link: <script src='publicPath/**'></script>
   },
   module: {
@@ -29,7 +31,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, '/'),
     compress: true,
     stats: "errors-only",
     headers: {
@@ -40,7 +42,9 @@ module.exports = {
     new webpack.DefinePlugin({
       "env": {
         "debug": JSON.parse(process.env.DEBUG),
-        "api": JSON.stringify(process.env.API)
+        "assets": JSON.stringify(ASSET_PATH),
+        "api": JSON.stringify(process.env.API),
+        "data": JSON.stringify('public/data/')
       }
     })
   ]

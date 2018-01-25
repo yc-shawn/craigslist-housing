@@ -11,7 +11,7 @@ class Home extends Component {
     this.state = { housing: {} };
   }
   componentWillMount(){
-    axios.get(env.debug ? '/data/housing.json': `${env.api}housing/`).then(res => {
+    axios.get(env.debug ? `${env.data}housing.json`: `${env.api}housing/`).then(res => {
       this.setState({ housing: res.data });
     })
   }

@@ -20,7 +20,7 @@ class Home extends Component {
           <div class="collapse navbar-collapse" id="navbar-global">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <Link class="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>
+                <Link class="nav-link" to="/"><i class="fa fa-home" aria-hidden="true"/> Home <span class="sr-only">(current)</span></Link>
               </li>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
@@ -38,7 +38,9 @@ class Home extends Component {
             </ul>
           </div>
         </nav>
-        <main id="app">{ this.props.children }</main>
+        <main id="app" style={{ backgroundImage: `url('${env.assets}img/landing-background.jpg')`}}>
+          { this.props.children }
+        </main>
       </div>
     )
   }
