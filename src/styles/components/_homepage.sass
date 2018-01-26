@@ -7,11 +7,16 @@
     display: flex
     flex-wrap: wrap
     justify-content: space-between
-    .housing-cat-item > span
-      background-color: rgba(#eee, 0.85)
+    .housing-cat-item > button
+      opacity: 0.85
       padding: 15px 18px
       display: block
       margin: 15px 0
       border-radius: 2px
       text-transform: uppercase
       text-align: center
+      &:hover
+        opacity: 1
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
+        transform: scale(1.05)
+        transition: transform 0.2s ease-in-out

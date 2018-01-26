@@ -8,10 +8,20 @@ export function getList(link){
       axios.get(env.debug ? `${env.data}list.json` : `${env.api}housing-list/`, {
         params: { link }
       }).then((res) => {
-        console.log(res.data);
-        resolve({link, list: res.data})
-      }).error((err) => {
-        reject({link, list: []})
+        let detailsPromise = [];
+        let list = res.data;
+        list.forEach((item) => {
+          detailsPromise.push(axios.get(env.debug ? `${env.data}detail.json` :`${env.api}housing-detail/`, {
+            params: {link: item.link},
+            cache: true
+          }))
+        })
+        Promise.all(detailsPromise).then((results) => {
+          for (let i = 0; i < results.length; i++) {
+            list[i].detail = results && results[i] && results[i].data;
+          }
+          resolve({link, list})
+        })
       })
     });
   }
