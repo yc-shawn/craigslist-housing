@@ -18,7 +18,7 @@ export function getList(link){
         })
         Promise.all(detailsPromise).then((results) => {
           for (let i = 0; i < results.length; i++) {
-            list[i].detail = results && results[i] && results[i].data;
+            list[i].detail = results[i].data;
           }
           resolve({link, list})
         })
@@ -28,6 +28,6 @@ export function getList(link){
 
   return {
     type: GET_LIST,
-    payload: Promise.resolve(payload(link))
+    payload: payload(link)
   };
 };
