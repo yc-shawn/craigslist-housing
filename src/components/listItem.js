@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 import { Button, Card, Image } from 'semantic-ui-react'
 import axios from 'axios';
 
 
-export default class ListItem extends Component {
+class ListItem extends Component {
   constructor(props){
     super(props);
     this.state = {detail:{}};
@@ -16,6 +17,9 @@ export default class ListItem extends Component {
     }).then((res) => {
       this.setState({detail: res.data});
     })
+  }
+  goDetail(){
+    this.props.history.push('detail');
   }
   render(){
     let { item } = this.props;
@@ -29,7 +33,7 @@ export default class ListItem extends Component {
               <li data-target={`#${carouselId}`} key={index} data-slide-to={index} class={index ? '' : 'active'}/>
             )}
           </ol>
-          <div class="carousel-inner">
+          <div class="carousel-inner" onClick={()=>this.goDetail()}>
             {detail.images && detail.images.map((img, index) =>
               <div class={"carousel-item " + (index ? '' : 'active')} key={index}>
                 <img class="d-block" src={img} alt="First slide" />
@@ -46,10 +50,12 @@ export default class ListItem extends Component {
           </a>
         </div>
         {item.price && item.price.length && <div class="price">{item.price}</div>}
-        <Card.Content>
+        <Card.Content onClick={()=>this.goDetail()}>
           { item.title }
         </Card.Content>
       </Card>
     )
   }
 }
+
+export default withRouter(connect(null, {})(ListItem));

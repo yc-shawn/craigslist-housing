@@ -13,7 +13,7 @@ class List extends Component {
     let { list } = this.props;
     console.log("list:", list);
     return (
-      <div class="list-page container py-5 ">
+      <div class="list-page  py-5 ">
         <Card.Group class="justify-content-center">
           {list && list.list && list.list.map((item, index) =>
             <ListItem key={item.pid} item={item}/>
