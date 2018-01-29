@@ -10,18 +10,7 @@ export function getList(link){
       }).then((res) => {
         let detailsPromise = [];
         let list = res.data;
-        list.forEach((item) => {
-          detailsPromise.push(axios.get(env.debug ? `${env.data}detail.json` :`${env.api}housing-detail/`, {
-            params: {link: item.link},
-            cache: true
-          }))
-        })
-        Promise.all(detailsPromise).then((results) => {
-          for (let i = 0; i < results.length; i++) {
-            list[i].detail = results[i].data;
-          }
-          resolve({link, list})
-        })
+        resolve({link, list})
       })
     });
   }

@@ -24,6 +24,11 @@ export default class ListItem extends Component {
     return (
       <Card class="housing-list-item">
         <div id={carouselId} class="carousel slide" data-ride="carousel" data-interval="false">
+          <ol class="carousel-indicators">
+            {detail.images && detail.images.map((img, index) =>
+              <li data-target={`#${carouselId}`} key={index} data-slide-to={index} class={index ? '' : 'active'}/>
+            )}
+          </ol>
           <div class="carousel-inner">
             {detail.images && detail.images.map((img, index) =>
               <div class={"carousel-item " + (index ? '' : 'active')} key={index}>
@@ -40,6 +45,7 @@ export default class ListItem extends Component {
             <span class="sr-only">Next</span>
           </a>
         </div>
+        {item.price && item.price.length && <div class="price">{item.price}</div>}
         <Card.Content>
           { item.title }
         </Card.Content>
