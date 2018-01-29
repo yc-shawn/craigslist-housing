@@ -7,15 +7,7 @@ import axios from 'axios';
 class Detail extends Component {
   constructor(props){
     super(props);
-    this.state = {detail:{}, index: 0};
-  }
-  componentWillMount(){
-    axios.get(env.debug ? `${env.data}detail.json` :`${env.api}housing-detail/`, {
-      // params: {link: this.props.item.link},
-      cache: true
-    }).then((res) => {
-      this.setState({detail: res.data});
-    })
+    this.state = {index: 0};
   }
   componentDidMount(){
     $('#housing-detail-carousel').bind('slid.bs.carousel', (e) => {
@@ -24,9 +16,11 @@ class Detail extends Component {
   }
 
   render(){
-    let { detail, currentSlide } = this.state;
+    let { detail } = this.props;
+    let { currentSlide } = this.state;
     let carouselId = `housing-detail-carousel`;
-    return (
+    console.log(detail);
+    return !detail ? null : (
       <div class="container py-5">
         <Card fluid class="housing-detail">
           <div id={carouselId} class="carousel slide" data-ride="carousel">
@@ -72,7 +66,7 @@ class Detail extends Component {
 }
 
 function mapStateToProps(state){
-  return { list: state.list }
+  return { detail: state.detail }
 }
 
 export default connect(mapStateToProps, {})(Detail);
