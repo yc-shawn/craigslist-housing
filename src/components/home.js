@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { Button } from 'semantic-ui-react'
 import axios from 'axios';
 
 // Actions
@@ -26,9 +27,9 @@ class Home extends Component {
     let CatItem = (props) => {
       return (
         <div class={'housing-cat-item ' + props.classNmae}>
-          <span onClick={()=>this.goList(props.item.link)}>
-            {props.all && 'all the '} {props.item.name}
-          </span>
+        <Button fluid size='huge' color={props.all ? 'teal' : 'olive'}
+          content={(props.all ? 'all the ' : '') + props.item.name}
+          onClick={()=>this.goList(props.item.link)}/>
         </div>
       )
     }
@@ -37,6 +38,7 @@ class Home extends Component {
         <h1 class="display-4 m-0 py-5 home-title">
           <span class="">Craigslist Housing</span>
         </h1>
+
         <section class="housing-cats py-5">
           {ban && <CatItem classNmae='col-md-8' key={-1} all item={ban}/>}
           {cats && cats.map((cat, index) =>
@@ -48,9 +50,7 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return { list: state.list }
-}
+
 
 
 export default connect(null, {getList})(Home);

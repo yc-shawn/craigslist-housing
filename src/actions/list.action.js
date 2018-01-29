@@ -8,16 +8,15 @@ export function getList(link){
       axios.get(env.debug ? `${env.data}list.json` : `${env.api}housing-list/`, {
         params: { link }
       }).then((res) => {
-        console.log(res.data);
-        resolve({link, list: res.data})
-      }).error((err) => {
-        reject({link, list: []})
+        let detailsPromise = [];
+        let list = res.data;
+        resolve({link, list})
       })
     });
   }
 
   return {
     type: GET_LIST,
-    payload: Promise.resolve(payload(link))
+    payload: payload(link)
   };
 };

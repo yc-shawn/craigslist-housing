@@ -1,0 +1,31 @@
+.housing-detail
+  .carousel
+    position: relative
+    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159)
+    .carousel-item
+      height: 0
+      padding-top: 75%
+      background-size: contain
+      background-position: center center
+      background-repeat: no-repeat
+  .thumbnail-list-container
+    overflow-x: scroll
+    .thumbnail-list
+      display: flex
+      .thumbnail-container
+        background-image: radial-gradient(circle, #c2d2eb, #9aabcd, #7685af, #566091, #383d73)
+        display: inline-block
+        border-top: 2px solid #2D4D6B
+        border-left: 1px solid #2D4D6B
+        border-right: 1px solid #2D4D6B
+        border-bottom: 2px solid #2D4D6B
+        &:not(.active)
+          opacity: 0.5
+        &.active
+          border: 2px solid #1C84D9
+        > div
+          width: 80px
+          height: 60px
+          background-size: contain
+          background-position: center center
+          background-repeat: no-repeat

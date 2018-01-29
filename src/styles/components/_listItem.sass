@@ -1,0 +1,24 @@
+.housing-list-item
+  position: relative
+  .price
+    @include position(absolute, 0, null, null, 0)
+    background-color: #2095F3
+    padding: 1px 4px
+    border-top-left-radius: 4px
+    border-bottom-right-radius: 4px
+    border: 1px solid #1874BF
+    color: white
+    font-size: 12px
+  .carousel
+    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159)
+    &:not(:hover)
+      .carousel-indicators, a[class^="carousel-control-"]
+        opacity: 0
+    .carousel-item
+      height: 0
+      padding-top: 75%
+      img
+        @include position(absolute, 50%, 0, 0, 50%)
+        max-width: 100%
+        max-height: 100%
+        transform: translate(-50%, -50%)
