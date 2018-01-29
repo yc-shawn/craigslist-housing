@@ -6,9 +6,9 @@ export function getList(link){
   function payload(link){
     return new Promise((resolve, reject) => {
       axios.get(env.debug ? `${env.data}list.json` : `${env.api}housing-list/`, {
-        params: { link }
+        params: { link },
+        cache: true
       }).then((res) => {
-        let detailsPromise = [];
         let list = res.data;
         resolve({link, list})
       })

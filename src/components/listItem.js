@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { Button, Card, Image } from 'semantic-ui-react'
 import axios from 'axios';
 
+// Actions
+import { getDetail } from '../actions/detail.action';
 
 class ListItem extends Component {
   constructor(props){
@@ -19,6 +21,7 @@ class ListItem extends Component {
     })
   }
   goDetail(){
+    this.props.getDetail(this.props.item.link)
     this.props.history.push('detail');
   }
   render(){
@@ -58,4 +61,4 @@ class ListItem extends Component {
   }
 }
 
-export default withRouter(connect(null, {})(ListItem));
+export default withRouter(connect(null, {getDetail})(ListItem));
