@@ -5,25 +5,27 @@ import axios from 'axios';
 
 // Actions
 import { getList } from '../actions/list.action';
+import { switchArea } from '../actions/area.action';
 
 class Home extends Component {
   constructor(props){
     super(props);
     this.state = { housing: {} };
   }
+
   componentWillMount(){
-    axios.get(env.debug ? `${env.data}housing.json`: `${env.api}housing/`).then(res => {
-      this.setState({ housing: res.data });
-    })
+    let { switchArea, area} = this.props;
+    switchArea(area && area.area);
   }
+
   goList(link){
-    console.log("this.props:", this.props);
     this.props.getList(link);
     this.props.history.push('list');
   }
 
   render(){
-    let { ban, cats } = this.state.housing;
+    let { area } = this.props;
+    let { ban, cats } = area && area.currentArea || {};
     let CatItem = (props) => {
       return (
         <div class={'housing-cat-item ' + props.classNmae}>
@@ -50,7 +52,10 @@ class Home extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return { area: state.area }
+}
 
 
 
-export default connect(null, {getList})(Home);
+export default connect(mapStateToProps, {getList, switchArea})(Home);
