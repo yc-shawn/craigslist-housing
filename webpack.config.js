@@ -19,7 +19,7 @@ module.exports = {
       loader: 'babel-loader',
       query: {
         presets: ['react', 'es2015'],
-        plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
+        plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties', 'transform-object-rest-spread']
       }
     }, {
       test: /\.sass$/,

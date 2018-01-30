@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-import { exampleFunction } from '../actions/example.action';
+import { switchArea } from '../actions/area.action';
 
-class Home extends Component {
+class Container extends Component {
   constructor(props){
     super(props);
   }
-
+  onSwitchArea(area){
+    this.props.switchArea(area);
+    this.props.history.replace('/')
+  }
   render(){
+    let { switchArea, area } = this.props;
+    let currentAreaName = 'SF bay area';
+    if (area.currentArea){
+      for (var i = 0; i < area.areas.length; i++) {
+        if (area.currentArea.area === area.areas[i].abbr){
+          currentAreaName = area.areas[i].name;
+          break;
+        }
+      }
+    }
     return (
       <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,13 +39,14 @@ class Home extends Component {
             <ul class="navbar-nav my-2 my-lg-0">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
+                  {currentAreaName}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
+                  {area && area.areas.map((region, index) =>
+                    <a class="dropdown-item" key={index} onClick={()=>this.onSwitchArea(region.abbr)}>{region.name}</a>
+                  )}
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" onClick={()=>this.onSwitchArea('all')}>Whole SF bay area</a>
                 </div>
               </li>
             </ul>
@@ -47,7 +61,7 @@ class Home extends Component {
 }
 
 function mapStateToProps(state){
-  return { example: state.example }
+  return { area: state.area }
 }
 
-export default connect(mapStateToProps, {exampleFunction})(Home);
+export default withRouter(connect(mapStateToProps, {switchArea})(Container));
