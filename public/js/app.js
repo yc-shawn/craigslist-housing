@@ -70429,7 +70429,7 @@ var ListItem = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      _axios2.default.get( false ? env.data + 'detail.json' : "https://yc-shawn.herokuapp.com/" + 'housing-detail/', {
+      _axios2.default.get( false ? env.data + 'detail' + (Math.random() > 0.5 ? '' : '2') + '.json' : "https://yc-shawn.herokuapp.com/" + 'housing-detail/', {
         params: { link: this.props.item.link },
         cache: true
       }).then(function (res) {
@@ -70454,7 +70454,7 @@ var ListItem = function (_Component) {
       return _react2.default.createElement(
         _semanticUiReact.Card,
         { className: 'housing-list-item' },
-        detail.images ? _react2.default.createElement(
+        detail.images && detail.images.length > 0 ? _react2.default.createElement(
           'div',
           { id: carouselId, className: 'carousel slide', 'data-ride': 'carousel', 'data-interval': 'false' },
           _react2.default.createElement(
