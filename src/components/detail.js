@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image, Dimmer, Loader } from 'semantic-ui-react'
 import axios from 'axios';
-
 
 class Detail extends Component {
   constructor(props){
@@ -20,7 +19,7 @@ class Detail extends Component {
     let { currentSlide } = this.state;
     let carouselId = `housing-detail-carousel`;
     console.log(detail);
-    return !detail ? null : (
+    return detail ?
       <div class="container py-5">
         <Card fluid class="housing-detail">
           <div id={carouselId} class="carousel slide" data-ride="carousel">
@@ -60,8 +59,10 @@ class Detail extends Component {
             )}
           </Card.Content>
         </Card>
-      </div>
-    )
+      </div> :
+      <Dimmer active class="py-5">
+        <Loader active size="big"/>
+      </Dimmer>
   }
 }
 
