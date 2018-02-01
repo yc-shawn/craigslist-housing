@@ -13,7 +13,7 @@ class ListItem extends Component {
     this.state = {detail:{}};
   }
   componentWillMount(){
-    axios.get(env.debug ? `${env.data}detail.json` :`${env.api}housing-detail/`, {
+    axios.get(env.debug ? `${env.data}detail${Math.random() > 0.5 ? '':'2'}.json` :`${env.api}housing-detail/`, {
       params: {link: this.props.item.link},
       cache: true
     }).then((res) => {
@@ -30,7 +30,7 @@ class ListItem extends Component {
     let carouselId = `list-carousel-${item.pid}`;
     return (
       <Card class="housing-list-item">
-        {detail.images ?
+        {detail.images && detail.images.length > 0 ?
           <div id={carouselId} class="carousel slide" data-ride="carousel" data-interval="false">
             <ol class="carousel-indicators">
               {detail.images.map((img, index) =>
