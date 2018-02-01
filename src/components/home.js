@@ -35,7 +35,6 @@ class Home extends Component {
         </div>
       )
     }
-    area = null;
     return (
       <div class="homepage container">
         <h1 class="display-4 m-0 py-5 home-title">
