@@ -60,9 +60,9 @@ class Detail extends Component {
           </Card.Content>
         </Card>
       </div> :
-      <Dimmer active class="py-5">
-        <Loader active size="big"/>
-      </Dimmer>
+      <section class="py-5">
+        <Loader active inverted size="big">Loading...</Loader>
+      </section>
   }
 }
 

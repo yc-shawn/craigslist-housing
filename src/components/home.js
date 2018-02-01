@@ -35,6 +35,7 @@ class Home extends Component {
         </div>
       )
     }
+    area = null;
     return (
       <div class="homepage container">
         <h1 class="display-4 m-0 py-5 home-title">
@@ -47,9 +48,9 @@ class Home extends Component {
               <CatItem classNmae='col-md-4' key={index} item={cat} />
             )}
           </section> :
-          <Dimmer active class="py-5">
-            <Loader active size="big"/>
-          </Dimmer>
+          <section class="py-5">
+            <Loader active inverted size="big">Loading...</Loader>
+          </section>
         }
       </div>
     )
