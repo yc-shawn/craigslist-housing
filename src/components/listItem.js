@@ -53,7 +53,7 @@ class ListItem extends Component {
               <span class="sr-only">Next</span>
             </a>
           </div> :
-          <div class="no-detail-images">
+          <div class="no-detail-images" onClick={()=>this.goDetail()}>
             <div class="no-img-text">No Images</div>
           </div>
         }
