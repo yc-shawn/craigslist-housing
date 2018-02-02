@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Button } from 'semantic-ui-react'
+import { Button, Dimmer, Loader } from 'semantic-ui-react'
 import axios from 'axios';
 
 // Actions
@@ -40,13 +40,17 @@ class Home extends Component {
         <h1 class="display-4 m-0 py-5 home-title">
           <span class="">Craigslist Housing</span>
         </h1>
-
-        <section class="housing-cats py-5">
-          {ban && <CatItem classNmae='col-md-8' key={-1} all item={ban}/>}
-          {cats && cats.map((cat, index) =>
-            <CatItem classNmae='col-md-4' key={index} item={cat} />
-          )}
-        </section>
+        {area ?
+          <section class="housing-cats py-5">
+            {ban && <CatItem classNmae='col-md-8' key={-1} all item={ban}/>}
+            {cats && cats.map((cat, index) =>
+              <CatItem classNmae='col-md-4' key={index} item={cat} />
+            )}
+          </section> :
+          <section class="py-5">
+            <Loader active inverted size="big">Loading...</Loader>
+          </section>
+        }
       </div>
     )
   }
