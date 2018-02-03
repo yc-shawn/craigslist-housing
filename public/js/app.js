@@ -50378,7 +50378,7 @@ var Home = function (_Component) {
             'Craigslist Housing'
           )
         ),
-        area ? _react2.default.createElement(
+        ban && cats ? _react2.default.createElement(
           'section',
           { className: 'housing-cats py-5' },
           ban && _react2.default.createElement(CatItem, { classNmae: 'col-md-8', key: -1, all: true, item: ban }),
@@ -70360,10 +70360,10 @@ var List = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'list-page py-5' },
-        list ? _react2.default.createElement(
+        list && list.list ? _react2.default.createElement(
           _semanticUiReact.Card.Group,
           { className: 'justify-content-center' },
-          list && list.list && list.list.map(function (item, index) {
+          list.list.map(function (item, index) {
             return _react2.default.createElement(_listItem2.default, { key: item.pid, item: item });
           })
         ) : _react2.default.createElement(
@@ -70864,7 +70864,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _detail = __webpack_require__(425);
 
-var INITIAL_STATE = {};
+var INITIAL_STATE = null;
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
