@@ -40,7 +40,7 @@ class Home extends Component {
         <h1 class="display-4 m-0 py-5 home-title">
           <span class="">Craigslist Housing</span>
         </h1>
-        {area ?
+        {ban && cats ?
           <section class="housing-cats py-5">
             {ban && <CatItem classNmae='col-md-8' key={-1} all item={ban}/>}
             {cats && cats.map((cat, index) =>

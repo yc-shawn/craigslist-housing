@@ -14,9 +14,9 @@ class List extends Component {
     console.log("list:", list);
     return (
       <div class="list-page py-5">
-        {list ?
+        {list && list.list ?
           <Card.Group class="justify-content-center">
-            {list && list.list && list.list.map((item, index) =>
+            {list.list.map((item, index) =>
               <ListItem key={item.pid} item={item}/>
             )}
           </Card.Group> :

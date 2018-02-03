@@ -1,6 +1,6 @@
 import { GET_DETAIL} from '../actions/detail.action'
 
-var INITIAL_STATE = {};
+var INITIAL_STATE = null;
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
