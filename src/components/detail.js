@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Button, Card, Image, Dimmer, Loader } from 'semantic-ui-react'
 import axios from 'axios';
+import Map from 'google-map-react';
 
 class Detail extends Component {
   constructor(props){
@@ -16,22 +17,26 @@ class Detail extends Component {
 
   render(){
     let { detail } = this.props;
+    let { images, map, content } = detail || {};
     let { currentSlide } = this.state;
     let carouselId = `housing-detail-carousel`;
+    const Mark = () => (<div class="map-mark"/>);
     console.log(detail);
     return detail ?
       <div class="container py-5">
         <Card fluid class="housing-detail">
-          {detail.images && detail.images.length ?
-            <div>
+
+          {/** Detail Images */}
+          {images && images.length ?
+            <div class="detail-image-container">
               <section id={carouselId} class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                  {detail.images && detail.images.map((img, index) =>
+                  {images && images.map((img, index) =>
                     <li data-target={`#${carouselId}`} key={index} data-slide-to={index} class={index ? '' : 'active'}/>
                   )}
                 </ol>
                 <div class="carousel-inner" >
-                  {detail.images && detail.images.map((img, index) =>
+                  {images && images.map((img, index) =>
                     <div class={"carousel-item " + (index ? '' : 'active')} key={index}
                          style={{ backgroundImage: `url('${img}')`}} />
                   )}
@@ -47,7 +52,7 @@ class Detail extends Component {
               </section>
               <section class="thumbnail-list-container">
                 <div class="thumbnail-list">
-                  {detail.images && detail.images.map((img, index) =>
+                  {images && images.map((img, index) =>
                     <span class={'thumbnail-container ' + (index === currentSlide ? 'active' : '')}
                           key={index} data-target={`#${carouselId}`} data-slide-to={index}>
                       <div style={{ backgroundImage: `url('${img}')`}} key={index}/>
@@ -57,10 +62,17 @@ class Detail extends Component {
               </section>
             </div>
           : null}
+
+          {/** Detail Maps */}
+          <div class="detail-map-container">{map &&
+            <Map zoom={map.accuracy < 11 ? 11 : map.accuracy} center={{ lat: map.lat, lng: map.lng }}>
+              <Mark lat={map.lat} lng={map.lng} />
+            </Map>}
+          </div>
+
+          {/** Detail Contents */}
           <Card.Content>
-            {detail.content && detail.content.map((paragraph, index) =>
-              <p key={index}>{paragraph}</p>
-            )}
+            {content && content.map((paragraph, index) => (<p key={index}>{paragraph}</p>) )}
           </Card.Content>
         </Card>
       </div> :
