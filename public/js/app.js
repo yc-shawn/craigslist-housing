@@ -71448,7 +71448,7 @@ var Detail = function (_Component) {
             { className: 'detail-map-container' },
             map && _react2.default.createElement(
               _googleMapReact2.default,
-              { apiKey: Object({"debug":false,"assets":"public/assets/","api":"https://yc-shawn.herokuapp.com/","data":"public/data/"}).GOOGLE_MAP_API_KEY, zoom: map.accuracy < 11 ? 11 : map.accuracy, center: { lat: map.lat, lng: map.lng } },
+              { bootstrapURLKeys: { key: "AIzaSyCxOh7xMgJz7YK-HzOde16aLdWyzN6JIxU" }, zoom: map.accuracy < 11 ? 11 : map.accuracy, center: { lat: map.lat, lng: map.lng } },
               _react2.default.createElement(Mark, { lat: map.lat, lng: map.lng })
             )
           ),
