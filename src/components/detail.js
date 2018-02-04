@@ -17,21 +17,16 @@ class Detail extends Component {
 
   render(){
     let { detail } = this.props;
-    let { images, map } = detail || {};
+    let { images, map, content } = detail || {};
     let { currentSlide } = this.state;
     let carouselId = `housing-detail-carousel`;
-    const Mark = ({ text }) => (
-      <div style={{
-        position: 'relative', color: 'white', background: 'red',
-        height: 40, width: 60, top: -20, left: -30,
-      }}>
-        {text}
-      </div>
-    );
+    const Mark = () => (<div class="map-mark"/>);
     console.log(detail);
     return detail ?
       <div class="container py-5">
         <Card fluid class="housing-detail">
+
+          {/** Detail Images */}
           {images && images.length ?
             <div class="detail-image-container">
               <section id={carouselId} class="carousel slide" data-ride="carousel">
@@ -67,17 +62,17 @@ class Detail extends Component {
               </section>
             </div>
           : null}
-          <div style={{width: '100%', height: '400px'}}>
-          {map && <Map zoom={parseInt(map.accuracy)}
-           center={{ lat: parseFloat(map.latitude), lng: parseFloat(map.longitude) }} >
-              <Mark lat={parseFloat(map.latitude)} lng={parseFloat(map.longitude)} />
-          </Map>}
+
+          {/** Detail Maps */}
+          <div class="detail-map-container">{map &&
+            <Map zoom={map.accuracy < 11 ? 11 : map.accuracy} center={{ lat: map.lat, lng: map.lng }}>
+              <Mark lat={map.lat} lng={map.lng} />
+            </Map>}
           </div>
 
+          {/** Detail Contents */}
           <Card.Content>
-            {detail.content && detail.content.map((paragraph, index) =>
-              <p key={index}>{paragraph}</p>
-            )}
+            {content && content.map((paragraph, index) => (<p key={index}>{paragraph}</p>) )}
           </Card.Content>
         </Card>
       </div> :
