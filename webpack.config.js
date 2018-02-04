@@ -44,6 +44,7 @@ module.exports = {
         "debug": JSON.parse(process.env.DEBUG),
         "assets": JSON.stringify(ASSET_PATH),
         "api": JSON.stringify(process.env.API),
+        "GOOGLE_MAP_API_KEY": JSON.stringify(process.env.GOOGLE_MAP_API_KEY),
         "data": JSON.stringify('public/data/')
       }
     })

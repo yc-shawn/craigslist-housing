@@ -65,7 +65,7 @@ class Detail extends Component {
 
           {/** Detail Maps */}
           <div class="detail-map-container">{map &&
-            <Map zoom={map.accuracy < 11 ? 11 : map.accuracy} center={{ lat: map.lat, lng: map.lng }}>
+            <Map bootstrapURLKeys={{key: env.GOOGLE_MAP_API_KEY}} zoom={map.accuracy < 11 ? 11 : map.accuracy} center={{ lat: map.lat, lng: map.lng }}>
               <Mark lat={map.lat} lng={map.lng} />
             </Map>}
           </div>
