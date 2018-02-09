@@ -17,7 +17,7 @@ class Detail extends Component {
 
   render(){
     let { detail } = this.props;
-    let { images, map, content } = detail || {};
+    let { images, map, content, title } = detail || {};
     let { currentSlide } = this.state;
     let carouselId = `housing-detail-carousel`;
     const Mark = () => (<div class="map-mark"/>);
@@ -25,43 +25,54 @@ class Detail extends Component {
     return detail ?
       <div class="container py-5">
         <Card fluid class="housing-detail">
-
-          {/** Detail Images */}
-          {images && images.length ?
+          <section class="d-flex">
+            {/** Detail Images */}
             <div class="detail-image-container">
-              <section id={carouselId} class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  {images && images.map((img, index) =>
-                    <li data-target={`#${carouselId}`} key={index} data-slide-to={index} class={index ? '' : 'active'}/>
-                  )}
-                </ol>
-                <div class="carousel-inner" >
-                  {images && images.map((img, index) =>
-                    <div class={"carousel-item " + (index ? '' : 'active')} key={index}
-                         style={{ backgroundImage: `url('${img}')`}} />
-                  )}
-                </div>
-                <a class="carousel-control-prev" href={`#${carouselId}`} role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href={`#${carouselId}`} role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </section>
-              <section class="thumbnail-list-container">
-                <div class="thumbnail-list">
-                  {images && images.map((img, index) =>
-                    <span class={'thumbnail-container ' + (index === currentSlide ? 'active' : '')}
-                          key={index} data-target={`#${carouselId}`} data-slide-to={index}>
-                      <div style={{ backgroundImage: `url('${img}')`}} key={index}/>
-                    </span>
-                  )}
-                </div>
-              </section>
+              {images && images.length ? [
+                <section id={carouselId} key="carousel" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    {images && images.map((img, index) =>
+                      <li data-target={`#${carouselId}`} key={index} data-slide-to={index} class={index ? '' : 'active'}/>
+                    )}
+                  </ol>
+                  <div class="carousel-inner" >
+                    {images && images.map((img, index) =>
+                      <div class={"carousel-item " + (index ? '' : 'active')} key={index}
+                           style={{ backgroundImage: `url('${img}')`}} />
+                    )}
+                  </div>
+                  <a class="carousel-control-prev" href={`#${carouselId}`} role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href={`#${carouselId}`} role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </section>,
+                <section class="thumbnail-list-container" key="thumbnail">
+                  <div class="thumbnail-list">
+                    {images && images.map((img, index) =>
+                      <span class={'thumbnail-container ' + (index === currentSlide ? 'active' : '')}
+                            key={index} data-target={`#${carouselId}`} data-slide-to={index}>
+                        <div style={{ backgroundImage: `url('${img}')`}} key={index}/>
+                      </span>
+                    )}
+                  </div>
+                </section>
+              ]: null}
             </div>
-          : null}
+            <div class="detail-information">
+              {title.housing && <h2>
+                {title.housing.map((tag, index) =>
+                  <span class="badge badge-info" key={index}>{tag}</span>
+                )}
+              </h2>}
+              <h2>{title.text}</h2>
+              <h3><span class="badge badge-warning">{title.price}</span></h3>
+              <h4>{title.location}</h4>
+            </div>
+          </section>
 
           {/** Detail Maps */}
           <div class="detail-map-container">{map &&
