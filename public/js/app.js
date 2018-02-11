@@ -71369,7 +71369,8 @@ var Detail = function (_Component) {
       var _ref = detail || {},
           images = _ref.images,
           map = _ref.map,
-          content = _ref.content;
+          content = _ref.content,
+          title = _ref.title;
 
       var currentSlide = this.state.currentSlide;
 
@@ -71384,65 +71385,110 @@ var Detail = function (_Component) {
         _react2.default.createElement(
           _semanticUiReact.Card,
           { fluid: true, className: 'housing-detail' },
-          images && images.length ? _react2.default.createElement(
-            'div',
-            { className: 'detail-image-container' },
+          _react2.default.createElement(
+            'section',
+            { className: 'd-flex' },
             _react2.default.createElement(
-              'section',
-              { id: carouselId, className: 'carousel slide', 'data-ride': 'carousel' },
-              _react2.default.createElement(
-                'ol',
-                { className: 'carousel-indicators' },
-                images && images.map(function (img, index) {
-                  return _react2.default.createElement('li', { 'data-target': '#' + carouselId, key: index, 'data-slide-to': index, className: index ? '' : 'active' });
-                })
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'carousel-inner' },
-                images && images.map(function (img, index) {
-                  return _react2.default.createElement('div', { className: "carousel-item " + (index ? '' : 'active'), key: index,
-                    style: { backgroundImage: 'url(\'' + img + '\')' } });
-                })
-              ),
-              _react2.default.createElement(
-                'a',
-                { className: 'carousel-control-prev', href: '#' + carouselId, role: 'button', 'data-slide': 'prev' },
-                _react2.default.createElement('span', { className: 'carousel-control-prev-icon', 'aria-hidden': 'true' }),
+              'div',
+              { className: 'detail-image-container' },
+              images && images.length ? [_react2.default.createElement(
+                'section',
+                { id: carouselId, key: 'carousel', className: 'carousel slide', 'data-ride': 'carousel' },
                 _react2.default.createElement(
-                  'span',
-                  { className: 'sr-only' },
-                  'Previous'
+                  'ol',
+                  { className: 'carousel-indicators' },
+                  images && images.map(function (img, index) {
+                    return _react2.default.createElement('li', { 'data-target': '#' + carouselId, key: index, 'data-slide-to': index, className: index ? '' : 'active' });
+                  })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'carousel-inner' },
+                  images && images.map(function (img, index) {
+                    return _react2.default.createElement('div', { className: "carousel-item " + (index ? '' : 'active'), key: index,
+                      style: { backgroundImage: 'url(\'' + img + '\')' } });
+                  })
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { className: 'carousel-control-prev', href: '#' + carouselId, role: 'button', 'data-slide': 'prev' },
+                  _react2.default.createElement('span', { className: 'carousel-control-prev-icon', 'aria-hidden': 'true' }),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'sr-only' },
+                    'Previous'
+                  )
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { className: 'carousel-control-next', href: '#' + carouselId, role: 'button', 'data-slide': 'next' },
+                  _react2.default.createElement('span', { className: 'carousel-control-next-icon', 'aria-hidden': 'true' }),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'sr-only' },
+                    'Next'
+                  )
                 )
-              ),
-              _react2.default.createElement(
-                'a',
-                { className: 'carousel-control-next', href: '#' + carouselId, role: 'button', 'data-slide': 'next' },
-                _react2.default.createElement('span', { className: 'carousel-control-next-icon', 'aria-hidden': 'true' }),
+              ), _react2.default.createElement(
+                'section',
+                { className: 'thumbnail-list-container', key: 'thumbnail' },
                 _react2.default.createElement(
-                  'span',
-                  { className: 'sr-only' },
-                  'Next'
+                  'div',
+                  { className: 'thumbnail-list' },
+                  images && images.map(function (img, index) {
+                    return _react2.default.createElement(
+                      'span',
+                      { className: 'thumbnail-container ' + (index === currentSlide ? 'active' : ''),
+                        key: index, 'data-target': '#' + carouselId, 'data-slide-to': index },
+                      _react2.default.createElement('div', { style: { backgroundImage: 'url(\'' + img + '\')' }, key: index })
+                    );
+                  })
+                )
+              )] : _react2.default.createElement(
+                'div',
+                { className: 'no-detail-images' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'no-img-text' },
+                  'No Images'
                 )
               )
             ),
             _react2.default.createElement(
-              'section',
-              { className: 'thumbnail-list-container' },
-              _react2.default.createElement(
-                'div',
-                { className: 'thumbnail-list' },
-                images && images.map(function (img, index) {
+              'div',
+              { className: 'detail-information' },
+              title.housing && _react2.default.createElement(
+                'h2',
+                { className: 'detail-housing' },
+                title.housing.map(function (tag, index) {
                   return _react2.default.createElement(
                     'span',
-                    { className: 'thumbnail-container ' + (index === currentSlide ? 'active' : ''),
-                      key: index, 'data-target': '#' + carouselId, 'data-slide-to': index },
-                    _react2.default.createElement('div', { style: { backgroundImage: 'url(\'' + img + '\')' }, key: index })
+                    { className: 'badge badge-info', key: index },
+                    tag
                   );
                 })
+              ),
+              _react2.default.createElement(
+                'h2',
+                null,
+                title.text
+              ),
+              _react2.default.createElement(
+                'h2',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  { className: 'badge badge-warning' },
+                  title.price
+                )
+              ),
+              _react2.default.createElement(
+                'h4',
+                null,
+                title.location
               )
             )
-          ) : null,
+          ),
           _react2.default.createElement(
             'div',
             { className: 'detail-map-container' },
@@ -74189,7 +74235,7 @@ exports = module.exports = __webpack_require__(889)(undefined);
 
 
 // module
-exports.push([module.i, "/*! normalize.css v3.0.2 | MIT License | git.io/normalize */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent; }\n  a:active, a:hover {\n    outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb, strong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton, input, optgroup, select, textarea {\n  color: inherit;\n  font: inherit;\n  margin: 0; }\n\nbutton {\n  overflow: visible;\n  text-transform: none; }\n\nselect {\n  text-transform: none; }\n\nbutton, html input[type=\"button\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\ninput[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled], html input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n  input::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  input[type=\"checkbox\"], input[type=\"radio\"] {\n    box-sizing: border-box;\n    padding: 0; }\n  input[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n    height: auto; }\n  input[type=\"search\"] {\n    -webkit-appearance: textfield;\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box;\n    box-sizing: content-box; }\n    input[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n      -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd, th {\n  padding: 0; }\n\nmain#app {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center center;\n  height: calc(100vh - 47px);\n  overflow-y: scroll;\n  overflow-x: hidden; }\n\n.homepage .home-title {\n  text-transform: capitalize;\n  font-family: 'Pacifico', cursive;\n  color: white; }\n\n.homepage .housing-cats {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between; }\n  .homepage .housing-cats .housing-cat-item > button {\n    opacity: 0.85;\n    padding: 15px 18px;\n    display: block;\n    margin: 15px 0;\n    border-radius: 2px;\n    text-transform: uppercase;\n    text-align: center; }\n    .homepage .housing-cats .housing-cat-item > button:hover {\n      opacity: 1;\n      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;\n      transform: scale(1.05);\n      transition: transform 0.2s ease-in-out; }\n\n.list-page {\n  background: rgba(45, 77, 107, 0.4);\n  min-height: calc(100vh - 47px); }\n\n.housing-list-item {\n  position: relative;\n  cursor: pointer; }\n  .housing-list-item .price {\n    position: absolute;\n    top: 0;\n    left: 0;\n    background-color: #2095F3;\n    padding: 1px 4px;\n    border-top-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    border: 1px solid #1874BF;\n    color: white;\n    font-size: 12px; }\n  .housing-list-item .carousel {\n    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159); }\n    .housing-list-item .carousel:not(:hover) .carousel-indicators, .housing-list-item .carousel:not(:hover) a[class^=\"carousel-control-\"] {\n      opacity: 0; }\n    .housing-list-item .carousel .carousel-item {\n      height: 0;\n      padding-top: 75%; }\n      .housing-list-item .carousel .carousel-item img {\n        position: absolute;\n        top: 50%;\n        right: 0;\n        bottom: 0;\n        left: 50%;\n        max-width: 100%;\n        max-height: 100%;\n        transform: translate(-50%, -50%); }\n  .housing-list-item .no-detail-images {\n    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159);\n    height: 0;\n    width: 100%;\n    padding-top: 75%;\n    position: relative; }\n    .housing-list-item .no-detail-images > .no-img-text {\n      position: absolute;\n      top: 50%;\n      right: 0;\n      bottom: 0;\n      left: 50%;\n      display: block;\n      text-align: center;\n      transform: translate(-50%, -50%);\n      text-align: center;\n      font-size: 20px;\n      height: 20px;\n      text-transform: uppercase;\n      font-weight: bold; }\n\n.housing-detail .detail-image-container {\n  margin: 10px;\n  border: 1px solid black;\n  width: 70%; }\n  .housing-detail .detail-image-container .carousel {\n    position: relative;\n    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159); }\n    .housing-detail .detail-image-container .carousel .carousel-item {\n      height: 0;\n      padding-top: 75%;\n      background-size: contain;\n      background-position: center center;\n      background-repeat: no-repeat; }\n  .housing-detail .detail-image-container .thumbnail-list-container {\n    overflow-x: scroll; }\n    .housing-detail .detail-image-container .thumbnail-list-container::-webkit-scrollbar {\n      display: none; }\n    .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list {\n      display: flex; }\n      .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container {\n        background-image: radial-gradient(circle, #c2d2eb, #9aabcd, #7685af, #566091, #383d73);\n        display: inline-block;\n        border-top: 2px solid #2D4D6B;\n        border-left: 1px solid #2D4D6B;\n        border-right: 1px solid #2D4D6B;\n        border-bottom: 2px solid #2D4D6B; }\n        .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container:not(.active) {\n          opacity: 0.5; }\n        .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container.active {\n          border: 2px solid #1C84D9; }\n        .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container > div {\n          width: 80px;\n          height: 60px;\n          background-size: contain;\n          background-position: center center;\n          background-repeat: no-repeat; }\n\n.housing-detail .detail-map-container {\n  width: 100%;\n  height: 320px; }\n  .housing-detail .detail-map-container .map-mark {\n    width: 72px;\n    height: 72px;\n    border-radius: 50%;\n    background-image: radial-gradient(circle, #f4a9da, #f889ba, #f86692, #f14363, #e11e2f);\n    transform: translate(-50%, -50%);\n    opacity: 0.2;\n    position: relative;\n    animation: flash 2s linear infinite; }\n    .housing-detail .detail-map-container .map-mark::after {\n      position: absolute;\n      top: calc(50% - 2px);\n      left: calc(50% - 2px);\n      width: 4px;\n      height: 4px;\n      border-radius: 50%;\n      content: \"\";\n      background-color: blue; }\n\n@keyframes flash {\n  0% {\n    opacity: 0.2; }\n  50% {\n    opacity: 0.5; }\n  0% {\n    opacity: 0.2; } }\n", ""]);
+exports.push([module.i, "/*! normalize.css v3.0.2 | MIT License | git.io/normalize */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent; }\n  a:active, a:hover {\n    outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb, strong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton, input, optgroup, select, textarea {\n  color: inherit;\n  font: inherit;\n  margin: 0; }\n\nbutton {\n  overflow: visible;\n  text-transform: none; }\n\nselect {\n  text-transform: none; }\n\nbutton, html input[type=\"button\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\ninput[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled], html input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n  input::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  input[type=\"checkbox\"], input[type=\"radio\"] {\n    box-sizing: border-box;\n    padding: 0; }\n  input[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n    height: auto; }\n  input[type=\"search\"] {\n    -webkit-appearance: textfield;\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box;\n    box-sizing: content-box; }\n    input[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n      -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd, th {\n  padding: 0; }\n\nmain#app {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center center;\n  height: calc(100vh - 47px);\n  overflow-y: scroll;\n  overflow-x: hidden; }\n\n.homepage .home-title {\n  text-transform: capitalize;\n  font-family: 'Pacifico', cursive;\n  color: white; }\n\n.homepage .housing-cats {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between; }\n  .homepage .housing-cats .housing-cat-item > button {\n    opacity: 0.85;\n    padding: 15px 18px;\n    display: block;\n    margin: 15px 0;\n    border-radius: 2px;\n    text-transform: uppercase;\n    text-align: center; }\n    .homepage .housing-cats .housing-cat-item > button:hover {\n      opacity: 1;\n      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;\n      transform: scale(1.05);\n      transition: transform 0.2s ease-in-out; }\n\n.list-page {\n  background: rgba(45, 77, 107, 0.4);\n  min-height: calc(100vh - 47px); }\n\n.housing-list-item {\n  position: relative;\n  cursor: pointer; }\n  .housing-list-item .price {\n    position: absolute;\n    top: 0;\n    left: 0;\n    background-color: #2095F3;\n    padding: 1px 4px;\n    border-top-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    border: 1px solid #1874BF;\n    color: white;\n    font-size: 12px; }\n  .housing-list-item .carousel {\n    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159); }\n    .housing-list-item .carousel:not(:hover) .carousel-indicators, .housing-list-item .carousel:not(:hover) a[class^=\"carousel-control-\"] {\n      opacity: 0; }\n    .housing-list-item .carousel .carousel-item {\n      height: 0;\n      padding-top: 75%; }\n      .housing-list-item .carousel .carousel-item img {\n        position: absolute;\n        top: 50%;\n        right: 0;\n        bottom: 0;\n        left: 50%;\n        max-width: 100%;\n        max-height: 100%;\n        transform: translate(-50%, -50%); }\n\n.no-detail-images {\n  background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159);\n  height: 0;\n  width: 100%;\n  padding-top: 75%;\n  position: relative; }\n  .no-detail-images > .no-img-text {\n    position: absolute;\n    top: 50%;\n    right: 0;\n    bottom: 0;\n    left: 50%;\n    display: block;\n    text-align: center;\n    transform: translate(-50%, -50%);\n    text-align: center;\n    font-size: 20px;\n    height: 20px;\n    text-transform: uppercase;\n    font-weight: bold; }\n\n.housing-detail .detail-image-container {\n  margin: 10px;\n  border: 1px solid black;\n  width: 70%; }\n  .housing-detail .detail-image-container .carousel {\n    position: relative;\n    background-image: radial-gradient(circle, #7e9bc9, #6983ac, #556c8f, #415673, #2f4159); }\n    .housing-detail .detail-image-container .carousel .carousel-item {\n      height: 0;\n      padding-top: 75%;\n      background-size: contain;\n      background-position: center center;\n      background-repeat: no-repeat; }\n  .housing-detail .detail-image-container .thumbnail-list-container {\n    overflow-x: scroll; }\n    .housing-detail .detail-image-container .thumbnail-list-container::-webkit-scrollbar {\n      display: none; }\n    .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list {\n      display: flex; }\n      .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container {\n        background-image: radial-gradient(circle, #c2d2eb, #9aabcd, #7685af, #566091, #383d73);\n        display: inline-block;\n        border-top: 2px solid #2D4D6B;\n        border-left: 1px solid #2D4D6B;\n        border-right: 1px solid #2D4D6B;\n        border-bottom: 2px solid #2D4D6B; }\n        .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container:not(.active) {\n          opacity: 0.5; }\n        .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container.active {\n          border: 2px solid #1C84D9; }\n        .housing-detail .detail-image-container .thumbnail-list-container .thumbnail-list .thumbnail-container > div {\n          width: 80px;\n          height: 60px;\n          background-size: contain;\n          background-position: center center;\n          background-repeat: no-repeat; }\n\n.housing-detail .detail-information {\n  width: 30%;\n  margin: 10px 15px 10px 5px; }\n  .housing-detail .detail-information .detail-housing > span + span {\n    margin-left: 10px; }\n\n.housing-detail .detail-map-container {\n  width: 100%;\n  height: 320px; }\n  .housing-detail .detail-map-container .map-mark {\n    width: 72px;\n    height: 72px;\n    border-radius: 50%;\n    background-image: radial-gradient(circle, #f4a9da, #f889ba, #f86692, #f14363, #e11e2f);\n    transform: translate(-50%, -50%);\n    opacity: 0.2;\n    position: relative;\n    animation: flash 2s linear infinite; }\n    .housing-detail .detail-map-container .map-mark::after {\n      position: absolute;\n      top: calc(50% - 2px);\n      left: calc(50% - 2px);\n      width: 4px;\n      height: 4px;\n      border-radius: 50%;\n      content: \"\";\n      background-color: blue; }\n\n@keyframes flash {\n  0% {\n    opacity: 0.2; }\n  50% {\n    opacity: 0.5; }\n  0% {\n    opacity: 0.2; } }\n", ""]);
 
 // exports
 
