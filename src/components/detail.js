@@ -60,16 +60,19 @@ class Detail extends Component {
                     )}
                   </div>
                 </section>
-              ]: null}
+              ]:
+              <div class="no-detail-images">
+                <div class="no-img-text">No Images</div>
+              </div>}
             </div>
             <div class="detail-information">
-              {title.housing && <h2>
+              {title.housing && <h2 class="detail-housing">
                 {title.housing.map((tag, index) =>
                   <span class="badge badge-info" key={index}>{tag}</span>
                 )}
               </h2>}
               <h2>{title.text}</h2>
-              <h3><span class="badge badge-warning">{title.price}</span></h3>
+              <h2><span class="badge badge-warning">{title.price}</span></h2>
               <h4>{title.location}</h4>
             </div>
           </section>
