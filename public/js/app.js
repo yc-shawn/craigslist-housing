@@ -71464,7 +71464,16 @@ var Detail = function (_Component) {
                   return _react2.default.createElement(
                     'span',
                     { className: 'badge badge-info', key: index },
-                    tag
+                    tag.type !== 'ft2' ? tag.text + tag.type : _react2.default.createElement(
+                      'span',
+                      null,
+                      tag.text + 'ft',
+                      _react2.default.createElement(
+                        'sup',
+                        null,
+                        '2'
+                      )
+                    )
                   );
                 })
               ),

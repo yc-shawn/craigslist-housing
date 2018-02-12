@@ -5,8 +5,14 @@
         "text": "Hotel Alternative That Can Help The Traveling Professional Save Money",
         "location": " (san jose south)",
         "housing": [
-            "1br",
-            "286ft2"
+            {
+                "text": "1",
+                "type": "br"
+            },
+            {
+                "text": "286",
+                "type": "ft2"
+            }
         ]
     },
     "images": [
