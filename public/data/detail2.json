@@ -5,8 +5,14 @@
         "text": "Feel the Convenience of This 2BR/1BA Apt. with a Laundry Facility!",
         "location": " (santa clara)",
         "housing": [
-            "2br",
-            "845ft2"
+            {
+                "text": "2",
+                "type": "br"
+            },
+            {
+                "text": "845",
+                "type": "ft2"
+            }
         ]
     },
     "images": null,

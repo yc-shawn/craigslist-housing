@@ -68,7 +68,11 @@ class Detail extends Component {
             <div class="detail-information">
               {title.housing && <h2 class="detail-housing">
                 {title.housing.map((tag, index) =>
-                  <span class="badge badge-info" key={index}>{tag}</span>
+                  <span class="badge badge-info" key={index}>
+                  {tag.type !== 'ft2' ? (tag.text + tag.type) :
+                    <span>{tag.text + 'ft'}<sup>2</sup></span>
+                  }
+                  </span>
                 )}
               </h2>}
               <h2>{title.text}</h2>
